@@ -8,5 +8,6 @@
     "langchain",
     "mixtral",
     "outfile"
-  ]
+  ],
+  "eslint.workingDirectories": ["./serve.bun"]
 }
