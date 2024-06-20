@@ -1,6 +1,8 @@
 import { describe, expect, it } from "bun:test";
 import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 import { groqModel } from "../groq.llm";
+import { StringOutputParser } from "@langchain/core/output_parsers";
+import { Logger } from "@app/lib/logger";
 
 describe("groq model", () => {
   it("should translate Italian", async () => {
@@ -9,8 +11,13 @@ describe("groq model", () => {
       new HumanMessage("hi!"),
     ];
 
+    const parser = new StringOutputParser();
     const result = await groqModel.invoke(messages);
-    expect(result.content).toBe(
+    const content = await parser.invoke(result);
+
+    Logger.info(content);
+
+    expect(content).toBe(
       'Ciao!\n\nThis is a simple and common greeting in Italian, similar to "hi" in English. It can be used in both formal and informal contexts.'
     );
   });
