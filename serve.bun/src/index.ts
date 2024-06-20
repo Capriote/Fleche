@@ -14,7 +14,7 @@ const app = new Elysia();
 app.use(GraphqlMiddleware);
 app.use(RestMiddleware);
 
-app.listen(Env.getOptional("PORT") ?? 3000, (server) => {
+app.listen(Env.get("PORT"), (server) => {
   if (Env.IS_DEV) {
     Logger.info(`Server listening on http://localhost:${server.port}/graphql`);
   }
