@@ -9,5 +9,9 @@
     "mixtral",
     "outfile"
   ],
-  "eslint.workingDirectories": ["./serve.bun"]
+  "eslint.workingDirectories": [
+    {
+      "mode": "auto"
+    }
+  ]
 }
