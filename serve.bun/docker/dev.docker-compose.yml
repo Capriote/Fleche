@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  db-postgres:
+    build:
+      dockerfile: ${PWD}/docker/dev.pg.Dockerfile
+      context: .
+    container_name: db-postgres
+    environment:
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_DB=${DATABASE_NAME}
+      - DATABASE_PORT=${DATABASE_PORT}
+    ports:
+      - "5432:${DATABASE_PORT}"
+    volumes:
+      - ./.databases/postgres:/var/lib/postgresql/data
+  # server:
+  #   build:
+  #     dockerfile: ${PWD}/docker/dev.Dockerfile
+  #     context: .
+  #   container_name: server
+  #   ports:
+  #     - '3000:3000'
+  #   volumes:
+  #     - .:/app
