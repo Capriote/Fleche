@@ -5,6 +5,7 @@
     "elysia",
     "GROQ",
     "kysely",
+    "langchain",
     "mixtral",
     "outfile"
   ]
