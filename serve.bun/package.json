@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@apollo/server": "^4.10.4",
+    "@langchain/groq": "^0.0.12",
     "@prisma/client": "^5.15.1",
     "@sentry/bun": "^7.107.0",
     "bson-objectid": "^2.0.4",

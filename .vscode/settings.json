@@ -1,3 +1,11 @@
 {
-  "cSpell.words": ["bunx", "codegen", "elysia", "kysely", "outfile"]
+  "cSpell.words": [
+    "bunx",
+    "codegen",
+    "elysia",
+    "GROQ",
+    "kysely",
+    "mixtral",
+    "outfile"
+  ]
 }

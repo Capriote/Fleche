@@ -1,6 +1,12 @@
 import { isNil } from "lodash";
 
-type Keys = "DATABASE_URL" | "NODE_ENV" | "PORT" | "SERVER" | "SENTRY_DSN";
+type Keys =
+  | "DATABASE_URL"
+  | "NODE_ENV"
+  | "PORT"
+  | "SERVER"
+  | "SENTRY_DSN"
+  | "GROQ_API_KEY";
 
 export class Env {
   static get IS_DEV() {
