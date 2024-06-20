@@ -1,11 +1,11 @@
-import { Context } from "elysia";
+import { Context } from 'elysia';
 
-import { Sentry } from "@app/lib/sentry";
+import { Sentry } from '@app/lib/sentry';
 
-import { ApolloServerContext } from "./types";
-import { getRequestUser } from "./get.request.user";
-import { getRequestIpAddress } from "./get.req.ip";
-import { getRequestTransactionID } from "./get.req.trans.id";
+import { ApolloServerContext } from './types';
+import { getRequestIpAddress } from './get.req.ip';
+import { getRequestUser } from './get.request.user';
+import { getRequestTransactionID } from './get.req.trans.id';
 
 export async function createApolloContext(params: {
   body: unknown;
@@ -20,8 +20,8 @@ export async function createApolloContext(params: {
   const transactionID = getRequestTransactionID(request);
   const ipAddress = getRequestIpAddress(request);
   const sentrySpan = Sentry.startInactiveSpan({
-    name: "GraphQLTransaction",
-    op: "GraphQL",
+    name: 'GraphQLTransaction',
+    op: 'GraphQL',
   })!;
 
   return {

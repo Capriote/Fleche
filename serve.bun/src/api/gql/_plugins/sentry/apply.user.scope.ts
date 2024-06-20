@@ -1,6 +1,7 @@
-import { MaybeNil } from "@app/types/maybe.nil";
-import { User } from "@app/types/user";
-import * as Sentry from "@sentry/bun";
+import * as Sentry from '@sentry/bun';
+
+import { User } from '@app/types/user';
+import { MaybeNil } from '@app/types/maybe.nil';
 
 export function applyUserScopeToSentry(user?: MaybeNil<User>) {
   if (!user) {

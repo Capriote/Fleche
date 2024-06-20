@@ -1,4 +1,4 @@
-import ObjectID from "bson-objectid";
+import ObjectID from 'bson-objectid';
 
 export function createID(prefix?: string) {
   const id = ObjectID().toHexString();

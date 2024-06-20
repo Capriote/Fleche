@@ -1,16 +1,16 @@
-import assert from "assert";
-import { Scope } from "@sentry/bun";
-import { ApolloServerPlugin } from "@apollo/server";
+import assert from 'assert';
+import { Scope } from '@sentry/bun';
+import { ApolloServerPlugin } from '@apollo/server';
 
-import { Sentry } from "@app/lib/sentry";
+import { Sentry } from '@app/lib/sentry';
 
-import { applyIpScopeToSentry } from "./apply.ip.scope";
-import { ApolloServerContext } from "../../_contexts/types";
-import { applyUserScopeToSentry } from "./apply.user.scope";
+import { applyIpScopeToSentry } from './apply.ip.scope';
+import { ApolloServerContext } from '../../_contexts/types';
+import { applyUserScopeToSentry } from './apply.user.scope';
 
 export const ApolloSentryPlugin: ApolloServerPlugin<ApolloServerContext> = {
   async requestDidStart(context) {
-    assert(context.contextValue.sentrySpan, "Context has no sentrySpan");
+    assert(context.contextValue.sentrySpan, 'Context has no sentrySpan');
     applyIpScopeToSentry(context.contextValue.ipAddress);
     applyUserScopeToSentry(context.contextValue?.user);
 
@@ -22,8 +22,8 @@ export const ApolloSentryPlugin: ApolloServerPlugin<ApolloServerContext> = {
       async didEncounterErrors({ errors, operation, request }) {
         if (!operation) {
           for (const error of errors) {
-            Sentry.withScope((scope) => {
-              scope.setExtra("query", request.query);
+            Sentry.withScope(scope => {
+              scope.setExtra('query', request.query);
               Sentry.captureException(error);
             });
           }
@@ -33,16 +33,16 @@ export const ApolloSentryPlugin: ApolloServerPlugin<ApolloServerContext> = {
 
         for (const error of errors) {
           Sentry.withScope((scope: Scope) => {
-            scope.setTag("transactionID", context.contextValue.transactionID);
-            scope.setTag("kind", operation.operation);
-            scope.setExtra("query", request.query);
-            scope.setExtra("variables", request.variables);
+            scope.setTag('transactionID', context.contextValue.transactionID);
+            scope.setTag('kind', operation.operation);
+            scope.setExtra('query', request.query);
+            scope.setExtra('variables', request.variables);
 
             if (error.path) {
               scope.addBreadcrumb({
-                category: "query-path",
-                level: "debug",
-                message: error.path.join(" > "),
+                category: 'query-path',
+                level: 'debug',
+                message: error.path.join(' > '),
               });
             }
 
@@ -57,7 +57,7 @@ export const ApolloSentryPlugin: ApolloServerPlugin<ApolloServerContext> = {
           willResolveField({ contextValue, info }) {
             const span = contextValue.sentrySpan.startChild({
               description: `${info.parentType.name}.${info.fieldName}`,
-              op: "resolver",
+              op: 'resolver',
             });
 
             return () => {
@@ -69,8 +69,8 @@ export const ApolloSentryPlugin: ApolloServerPlugin<ApolloServerContext> = {
       async willSendResponse({ response }) {
         context.contextValue.sentrySpan.end();
         response.http.headers.set(
-          "X-Transaction-ID",
-          context.contextValue.transactionID
+          'X-Transaction-ID',
+          context.contextValue.transactionID,
         );
 
         return Promise.resolve();

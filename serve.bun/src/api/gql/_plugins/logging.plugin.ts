@@ -1,17 +1,17 @@
-import moment from "moment";
-import { Kind } from "graphql/language/kinds";
+import moment from 'moment';
+import { Kind } from 'graphql/language/kinds';
 import {
   ApolloServerPlugin,
   BaseContext,
   GraphQLRequestContext,
-} from "@apollo/server";
+} from '@apollo/server';
 
-import { Env } from "@app/lib/env";
-import { Logger } from "@app/lib/logger";
+import { Env } from '@app/lib/env';
+import { Logger } from '@app/lib/logger';
 
-import { ApolloServerContext } from "../_contexts/types";
+import { ApolloServerContext } from '../_contexts/types';
 
-const logger = Logger.getSubLogger({ name: "Apollo Log" });
+const logger = Logger.getSubLogger({ name: 'Apollo Log' });
 
 function getOps(context: GraphQLRequestContext<BaseContext>) {
   if (!context.document) {
@@ -41,7 +41,7 @@ export const ApolloLogPlugin: ApolloServerPlugin<ApolloServerContext> = {
 
     let shouldLog = false;
 
-    if (op !== "IntrospectionQuery" && !query?.includes("IntrospectionQuery")) {
+    if (op !== 'IntrospectionQuery' && !query?.includes('IntrospectionQuery')) {
       shouldLog = Env.IS_DEV;
     }
 
@@ -53,13 +53,13 @@ export const ApolloLogPlugin: ApolloServerPlugin<ApolloServerContext> = {
         // const userID = requestContext.contextValue.user?.uid ?? "UNKNOWN";
 
         // TODO: Add auth
-        const userID = "UNKNOWN";
+        const userID = 'UNKNOWN';
 
         logger.error(
-          "User=%s Op=%s Transaction=%s",
+          'User=%s Op=%s Transaction=%s',
           userID,
           getOps(requestContext),
-          transactionID
+          transactionID,
         );
 
         logger.error({
@@ -79,13 +79,13 @@ export const ApolloLogPlugin: ApolloServerPlugin<ApolloServerContext> = {
         const duration = moment.duration(moment().diff(start));
         // const userID = context.contextValue.user?.uid ?? "UNKNOWN";
         // TODO: Add auth
-        const userID = "UNKNOWN";
+        const userID = 'UNKNOWN';
 
         logger.debug(
-          "User=%s Op=%s Duration=%sms",
+          'User=%s Op=%s Duration=%sms',
           userID,
           getOps(requestContext),
-          duration.asMilliseconds()
+          duration.asMilliseconds(),
         );
 
         return Promise.resolve();

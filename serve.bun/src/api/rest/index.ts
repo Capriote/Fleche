@@ -1,6 +1,6 @@
-import Elysia from "elysia";
+import Elysia from 'elysia';
 
-import health from "./health";
+import health from './health';
 
 export const RestMiddleware = new Elysia();
 

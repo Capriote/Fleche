@@ -1,13 +1,13 @@
-import { Context } from "elysia";
+import { Context } from 'elysia';
 
-import { MaybeNil } from "@app/types/maybe.nil";
-
-import { User } from "@app/types/user";
+import { User } from '@app/types/user';
+import { MaybeNil } from '@app/types/maybe.nil';
 
 // TODO: Implement
 export async function getRequestUser(
-  _request: Context["request"]
+  _request: Context['request'],
 ): Promise<MaybeNil<User>> {
+  await Promise.resolve(_request);
   // const headers = request.headers;
   // const authorization = headers.get("Authorization") || "";
   // const token = authorization.replace("Bearer", "").trim();

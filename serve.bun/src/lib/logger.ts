@@ -1,6 +1,6 @@
-import * as TsLog from "tslog";
+import * as TsLog from 'tslog';
 
-import { Env } from "@app/lib/env";
+import { Env } from '@app/lib/env';
 
 export const LOG_LEVEL: Record<string, number> = {
   debug: 2,
@@ -16,15 +16,15 @@ const minLevel = Env.IS_DEV ? LOG_LEVEL.debug : LOG_LEVEL.info;
 
 export const Logger = new TsLog.Logger({
   minLevel: minLevel,
-  name: "App",
+  name: 'App',
   overwrite: {
     addPlaceholders: (logObjMeta, placeholderValues) => {
-      placeholderValues["filePathWithLine"] =
-        logObjMeta.path?.filePathWithLine?.replace("/", "") ?? "";
+      placeholderValues['filePathWithLine'] =
+        logObjMeta.path?.filePathWithLine?.replace('/', '') ?? '';
     },
   },
   prettyLogTemplate:
-    "\n{{rawIsoStr}} {{logLevelName}} {{name}} {{filePathWithLine}}\n",
+    '\n{{rawIsoStr}} {{logLevelName}} {{name}} {{filePathWithLine}}\n',
   stylePrettyLogs: Env.IS_DEV,
-  type: "pretty",
+  type: 'pretty',
 });

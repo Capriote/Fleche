@@ -1,25 +1,25 @@
-import { isNil } from "lodash";
+import { isNil } from 'lodash';
 
 type Keys =
-  | "DATABASE_URL"
-  | "NODE_ENV"
-  | "PORT"
-  | "SERVER"
-  | "SENTRY_DSN"
-  | "GROQ_API_KEY";
+  | 'DATABASE_URL'
+  | 'GROQ_API_KEY'
+  | 'NODE_ENV'
+  | 'PORT'
+  | 'SENTRY_DSN'
+  | 'SERVER';
 
 export class Env {
   static get IS_DEV() {
-    return isNil(this.NODE_ENV) || this.NODE_ENV === "development";
+    return isNil(this.NODE_ENV) || this.NODE_ENV === 'development';
   }
 
   static get IS_TEST() {
-    return this.NODE_ENV === "test";
+    return this.NODE_ENV === 'test';
   }
 
   static get<T extends boolean = true>(
     key: Keys,
-    required = !this.IS_TEST
+    required = !this.IS_TEST,
   ): T extends true ? string : undefined {
     const value = process.env[key];
     if (required && isNil(value)) {
@@ -34,6 +34,6 @@ export class Env {
   }
 
   private static get NODE_ENV() {
-    return process.env.NODE_ENV ?? "development";
+    return process.env.NODE_ENV ?? 'development';
   }
 }

@@ -1,7 +1,7 @@
-import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 
 export const isPrismaError = (
-  error: unknown
+  error: unknown,
 ): error is PrismaClientKnownRequestError => {
   return error instanceof PrismaClientKnownRequestError;
 };

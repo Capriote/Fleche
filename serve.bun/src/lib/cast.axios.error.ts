@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 export function castAxiosError<T>(error: any) {
-  if ("response" in error) {
+  if ('response' in error) {
     return error.response?.data as T;
   }
 
@@ -11,5 +11,5 @@ export function castAxiosError<T>(error: any) {
 }
 
 export function isAxiosError(error: any): boolean {
-  return "response" in error;
+  return 'response' in error;
 }
