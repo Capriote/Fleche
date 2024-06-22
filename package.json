@@ -3,6 +3,6 @@
   "license": "CC BY-NC 3.0",
   "private": true,
   "workspaces": [
-    "serve.*/*"
+    "serve.bun"
   ]
 }
