@@ -42,10 +42,11 @@ describe('Lib::Prompts::App map prompts', () => {
     const files = await fs.readdir(target);
     const codeContext = await composeCodeContext(target, files);
     const codeContextStr = codeContext.join('\n');
-    const fullPrompt = await prompt.format({ codeContext: codeContextStr });
-    const result = await groqModel.invoke(fullPrompt);
     const parser = new StringOutputParser();
-    const resultContent = await parser.invoke(result);
-    Logger.debug(resultContent);
+    const result = await prompt.pipe(groqModel).pipe(parser).invoke({
+      codeContext: codeContextStr,
+    });
+
+    Logger.debug(result);
   });
 });
