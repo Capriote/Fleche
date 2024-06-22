@@ -10,6 +10,7 @@ export const prompt = ChatPromptTemplate.fromTemplate(
     - id: string
     - children: string[] - id of the imported modules in this file
     - description: string - short description of what the file does
+    - path: string - path to the file
 
   Only response with the json.
   `,
