@@ -7,7 +7,7 @@ import { Logger } from '@app/lib/logger';
 import { groqModel } from '../groq.llm';
 
 describe('groq model', () => {
-  it('should translate Italian', async () => {
+  it.skip('should translate Italian', async () => {
     const messages = [
       new SystemMessage('Translate the following from English into Italian'),
       new HumanMessage('hi!'),

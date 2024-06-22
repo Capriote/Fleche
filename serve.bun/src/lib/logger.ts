@@ -2,7 +2,7 @@ import * as TsLog from 'tslog';
 
 import { Env } from '@app/lib/env';
 
-export const LOG_LEVEL: Record<string, number> = {
+export const LOG_LEVEL = {
   debug: 2,
   error: 5,
   fatal: 6,
@@ -10,9 +10,9 @@ export const LOG_LEVEL: Record<string, number> = {
   silly: 0,
   trace: 1,
   warn: 4,
-};
+} satisfies Record<string, number>;
 
-const minLevel = Env.IS_DEV ? LOG_LEVEL.debug : LOG_LEVEL.info;
+const minLevel = LOG_LEVEL.debug;
 
 export const Logger = new TsLog.Logger({
   minLevel: minLevel,
