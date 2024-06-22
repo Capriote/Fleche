@@ -13,6 +13,7 @@ export const prompt = ChatPromptTemplate.fromTemplate(
     - path: string - path to the file
     - title: string - Short purpose of the file in 5 words or less
 
+  Ignore node_modules and dependencies
   Only response with the json.
   `,
 );
