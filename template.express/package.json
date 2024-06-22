@@ -1,0 +1,13 @@
+{
+  "name": "template.express",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon --watch src"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
