@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs/promises';
 import { describe, it } from 'bun:test';
-import { StringOutputParser } from '@langchain/core/output_parsers';
+import { JsonOutputParser } from '@langchain/core/output_parsers';
 
 import { Logger } from '@app/lib/logger';
 import { groqModel } from '@app/lib/llm';
@@ -42,7 +42,7 @@ describe('Lib::Prompts::App map prompts', () => {
     const files = await fs.readdir(target);
     const codeContext = await composeCodeContext(target, files);
     const codeContextStr = codeContext.join('\n');
-    const parser = new StringOutputParser();
+    const parser = new JsonOutputParser();
     const result = await prompt.pipe(groqModel).pipe(parser).invoke({
       codeContext: codeContextStr,
     });
